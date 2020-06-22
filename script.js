@@ -195,6 +195,7 @@ function addTransaction(e) {
 
     text.value = "";
     url.value = "";
+    weight.value = 0;
     console.log("something happend");
     console.log(transactions);
   }
