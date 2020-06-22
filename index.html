@@ -22,30 +22,43 @@
 
       <!-- Overlay content -->
       <div class="overlay-content">
-        <form id="form">
-          <label for="name">name:</label><br />
-          <input type="text" id="text" name="name" />
-          <br />
-          <label for="url">url:</label>
-          <br />
-          <input type="text" id="url" name="url" />
-          <br />
-          <label for="text">Weight</label>
-          <div class="slidecontainer">
-            <input
-              id="mine"
-              type="range"
-              min="1"
-              max="10"
-              value="1"
-              step="1"
-              onChange="change();"
-            />
-            <span id="result"></span>
+        <button class="cta-btn" id="open">Add item</button>
+        <div class="modal-container" id="modal">
+          <div class="modal">
+            <button class="close-btn" id="close">
+              <i class="fa fa-times"></i>
+            </button>
+            <div class="modal-header">
+              <h3>Add Item</h3>
+            </div>
+            <div class="modal-content">
+              <form id="form">
+                <label for="name">name:</label><br />
+                <input type="text" id="text" name="name" />
+                <br />
+                <label for="url">url:</label>
+                <br />
+                <input type="text" id="url" name="url" />
+                <br />
+                <label for="text">Weight</label>
+                <div class="slidecontainer">
+                  <input
+                    id="mine"
+                    type="range"
+                    min="1"
+                    max="10"
+                    value="1"
+                    step="1"
+                    onChange="change();"
+                  />
+                  <span id="result"></span>
+                </div>
+                <br />
+                <input type="submit" value="Add Item" class="submit-btn" />
+              </form>
+            </div>
           </div>
-          <br />
-          <input type="submit" value="Add Item" class="submit-btn" />
-        </form>
+        </div>
       </div>
     </div>
 
