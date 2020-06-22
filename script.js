@@ -8,8 +8,6 @@ const dots = document.querySelectorAll(".dot");
 const title = document.getElementById("title");
 const cover = document.getElementById("cover");
 
-// image titles
-
 const images = [
   "https://cdn.pixabay.com/photo/2020/06/15/19/49/fuchs-5303221_960_720.jpg",
   "https://cdn.pixabay.com/photo/2020/06/20/12/32/tit-5320871__340.jpg",
@@ -160,3 +158,56 @@ dots.forEach((dot, idx) => {
   });
 });
 */
+
+const form = document.getElementById("form");
+const text = document.getElementById("text");
+const url = document.getElementById("url");
+const weight = document.getElementById("mine");
+// image titles
+const localStorageTransactions = JSON.parse(
+  //parse it into array
+  localStorage.getItem("transactions")
+);
+
+let transactions =
+  localStorage.getItem("transactions") !== null ? localStorageTransactions : [];
+
+// Add transaction
+function addTransaction(e) {
+  e.preventDefault(); //So that it doesn't actually submit and then I just want to make sure that there's there's not empty values.
+  console.log(text.value);
+  console.log(url.value);
+  console.log(weight.value);
+
+  if (text.value.trim() === "" || url.value.trim() === "") {
+    alert("Please add a text and amount");
+  } else {
+    const transaction = {
+      id: generateID(),
+      text: text.value,
+      url: url.value,
+      weight: mine.value,
+    };
+
+    transactions.push(transaction);
+
+    updateLocalStorage();
+
+    text.value = "";
+    url.value = "";
+    console.log("something happend");
+    console.log(transactions);
+  }
+}
+
+// Generate random ID
+function generateID() {
+  return Math.floor(Math.random() * 100000000);
+}
+
+// Update local storage transactions
+function updateLocalStorage() {
+  localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+
+form.addEventListener("submit", addTransaction);

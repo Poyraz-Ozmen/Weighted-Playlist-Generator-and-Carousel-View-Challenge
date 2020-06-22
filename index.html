@@ -22,17 +22,30 @@
 
       <!-- Overlay content -->
       <div class="overlay-content">
-        <label for="name">name:</label><br />
-        <input type="text" id="text" name="name" />
-        <br />
-        <label for="url">url:</label>
-        <br />
-        <input type="text" id="text" name="url" />
-        <br />
-        <label for="text">Weight</label>
-        <div class="slidecontainer">
-          <input id="mine" type="range" min="1" max="10" value="1" step="1" onChange="change();"> <span id="result"></span>        </div>
-        </div>
+        <form id="form">
+          <label for="name">name:</label><br />
+          <input type="text" id="text" name="name" />
+          <br />
+          <label for="url">url:</label>
+          <br />
+          <input type="text" id="url" name="url" />
+          <br />
+          <label for="text">Weight</label>
+          <div class="slidecontainer">
+            <input
+              id="mine"
+              type="range"
+              min="1"
+              max="10"
+              value="1"
+              step="1"
+              onChange="change();"
+            />
+            <span id="result"></span>
+          </div>
+          <br />
+          <input type="submit" value="Add Item" class="submit-btn" />
+        </form>
       </div>
     </div>
 
