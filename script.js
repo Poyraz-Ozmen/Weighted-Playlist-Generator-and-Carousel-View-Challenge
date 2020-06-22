@@ -65,7 +65,7 @@ function nextimage() {
 
 prevBtn.addEventListener("click", previmage);
 nextBtn.addEventListener("click", nextimage);
-
+/*
 dots.forEach((dot, idx) => {
   //   number each dot according to array index
   dot.setAttribute("data-num", idx);
@@ -73,15 +73,31 @@ dots.forEach((dot, idx) => {
   //   add a click event listener to each dot
   dot.addEventListener("click", (e) => {
     clickedDotNum = e.target.dataset.num;
-
-    if (clickedDotNum === activeDotNum) {
+    console.log("clicked NOW: ", clickedDotNum);
+    console.log("active NOW: ", activeDotNum);
+    if (clickedDotNum == activeDotNum) {
       //do nothing
+      console.log("they are equal");
+      console.log("--------------------------");
       return;
     } else {
       //if active is bigger
       if (activeDotNum > clickedDotNum) {
-        if (activeDotNum === clickedDotNum + 1) {
-          previmage();
+        console.log("active is bigger then clicked");
+        if ((activeDotNum = clickedDotNum + 1)) {
+          console.log("activeDotNum == clickedDotNum + 1");
+          imageIndex--;
+          if (imageIndex < 0) {
+            imageIndex = images.length - 1;
+          }
+          if (activeDotNum == 0) {
+            activeDotNum = 2;
+          } else {
+            activeDotNum--;
+          }
+          loadImg(images[imageIndex]);
+          console.log("image_index: ", imageIndex);
+          console.log("activeDotNum: ", activeDotNum);
         } else {
           activeDotNum = activeDotNum - 2;
           imageIndex = imageIndex - 2;
@@ -95,8 +111,20 @@ dots.forEach((dot, idx) => {
         }
       } else {
         //clicked  is bigger
-        if (clickedDotNum === activeDotNum + 1) {
-          nextimage();
+        if (clickedDotNum == activeDotNum + 1) {
+          imageIndex++;
+
+          if (imageIndex > images.length - 1) {
+            imageIndex = 0;
+          }
+          if (activeDotNum == 2) {
+            activeDotNum = 0;
+          } else {
+            activeDotNum++;
+          }
+          loadImg(images[imageIndex]);
+          console.log("image_index: ", imageIndex);
+          console.log("active: ", activeDotNum);
         } else {
           imageIndex = imageIndex + 2;
 
@@ -105,10 +133,11 @@ dots.forEach((dot, idx) => {
           }
           activeDotNum = activeDotNum + 2;
           loadImg(images[imageIndex]);
-          console.log("image_index: ", imageIndex);
-          console.log("active: ", activeDotNum);
         }
       }
     }
+    console.log("active END: ", activeDotNum);
+    console.log("--------------------------");
   });
 });
+*/
