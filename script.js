@@ -78,6 +78,12 @@ function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
 
+// slider for weight range
+var result = document.getElementById("result");
+var mine = document.getElementById("mine");
+function change() {
+  result.innerText = mine.value;
+}
 /*
 dots.forEach((dot, idx) => {
   //   number each dot according to array index
