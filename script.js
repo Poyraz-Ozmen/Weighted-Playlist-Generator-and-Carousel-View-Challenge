@@ -7,17 +7,18 @@ const title = document.getElementById("title");
 const cover = document.getElementById("cover");
 
 // image titles
-const images = ["hey", "summer", "ukulele"];
+const images = ["https://cdn.pixabay.com/photo/2020/06/06/14/26/sunflower-5266745_960_720.jpg", "https://cdn.pixabay.com/photo/2020/06/14/09/27/seagull-5297122_960_720.jpg", "https://cdn.pixabay.com/photo/2015/12/01/19/35/portrait-1072696_960_720.jpg"];
 
 // Keep track of image
-let imageIndex = 2;
+let imageIndex = images.length;
 
 // Initially load image details into DOM
-loadImg(images[imageIndex]);
+loadImg(images[0]);
 
 // Update image details
 function loadImg(image) {
-  cover.src = `images/${image}.jpg`;
+  //cover.src = `images/${image}.jpg`;
+  cover.src = `${image}`;
 }
 
 

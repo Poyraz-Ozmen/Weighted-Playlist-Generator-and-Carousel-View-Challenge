@@ -20,6 +20,17 @@ body {
   margin: 0;
 }
 
+
+h1{
+	display: flex;
+	font-size: 10000;
+	width: 600px;
+	margin-left: 150;
+	margin-right: 200;
+	height: 4000px;
+	margin-top: 150;
+}
+
 .container {
   background-color: #fff;
   border-radius: 15px;
@@ -33,24 +44,22 @@ body {
 
 .img-container {
   position: relative;
-  width: 110px;
+  width: 1000px;
+  margin
 }
 
 .img-container img {
-  border-radius: 50%;
+  display: flex;
+  border-radius: 10%;
   object-fit: cover;
-  height: 110px;
-  width: inherit;
+  height: 500px;
+  width: 700px;
   position: absolute;
   bottom: 0;
-  left: 0;
-  /*animation: rotate 3s linear infinite;*/
+  left: 100;
+  margin-bottom: 1000px 0;
+  margin: 200px 0;
 
-  animation-play-state: paused;
-}
-
-.container.play .img-container img {
-  animation-play-state: running;
 }
 
 .navigation {
@@ -61,9 +70,10 @@ body {
 }
 
 .action-btn {
+  display: flex;
   background-color: #fff;
   border: 0;
-  color: #dfdbdf;
+  color: #000f3b;
   font-size: 20px;
   cursor: pointer;
   padding: 10px;
