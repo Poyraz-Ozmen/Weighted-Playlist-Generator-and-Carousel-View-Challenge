@@ -3,17 +3,19 @@ const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const dots = document.querySelectorAll(".dot");
 //console.log(dots);
+//const toggle = document.getElementById("toggle");
 
 const title = document.getElementById("title");
 const cover = document.getElementById("cover");
 
 // image titles
+
 const images = [
+  "https://cdn.pixabay.com/photo/2020/06/15/19/49/fuchs-5303221_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2020/06/20/12/32/tit-5320871__340.jpg",
   "https://cdn.pixabay.com/photo/2020/06/06/14/26/sunflower-5266745_960_720.jpg",
   "https://cdn.pixabay.com/photo/2020/06/14/09/27/seagull-5297122_960_720.jpg",
   "https://cdn.pixabay.com/photo/2015/12/01/19/35/portrait-1072696_960_720.jpg",
-  "https://cdn.pixabay.com/photo/2020/06/15/19/49/fuchs-5303221_960_720.jpg",
-  "https://cdn.pixabay.com/photo/2020/06/20/12/32/tit-5320871__340.jpg",
 ];
 
 let activeDotNum = 0;
@@ -65,6 +67,17 @@ function nextimage() {
 
 prevBtn.addEventListener("click", previmage);
 nextBtn.addEventListener("click", nextimage);
+
+/* Open when someone clicks on the span element */
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+
 /*
 dots.forEach((dot, idx) => {
   //   number each dot according to array index
