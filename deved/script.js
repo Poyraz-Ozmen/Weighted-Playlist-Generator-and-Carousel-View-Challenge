@@ -197,7 +197,7 @@ function removeElement() {
     transactionDiv.classList.add("transaction");
     // create list
     const newTransaction = document.createElement("li");
-    newTransaction.innerText = `${transaction.todoInput}`;
+    newTransaction.innerText = `${transaction.todoInput} `;
     console.log(transaction);
     newTransaction.classList.add("transaction-item");
     console.log(newTransaction);
@@ -206,10 +206,66 @@ function removeElement() {
     //append to list
     transactionList.appendChild(transactionDiv);
   });
+
+  add_array = [];
+  for (let index = 0; index < transactions.length; index++) {
+    var counter = 0;
+    while (counter < transactions[index].weight) {
+      add_array.push(transactions[index].todoInput);
+      counter++;
+    }
+  }
+  console.log(add_array);
+  input = 13;
+  counter = 1;
+  new_arr = [];
+  new_arr.push(add_array[0]);
+  let index = 1;
+  var len_of_ad_array = add_array.length;
+  while (counter < input && index < add_array.length) {
+    if (new_arr[counter - 1] !== add_array[index]) {
+      new_arr.push(add_array[index]);
+      add_array.splice(index, 1);
+      counter++;
+      //index++;
+    } else {
+      index++;
+    }
+    if (index >= add_array.length) {
+      index = 0;
+      if (add_array[0] == add_array[add_array.length - 1]) {
+        break;
+      }
+    }
+  }
+
+  console.log(new_arr);
+  console.log(add_array);
+  index = 0;
+
+  while (add_array.length > 0 && index < new_arr.length) {
+    if (new_arr[index] != add_array[0] && new_arr[index + 1] != add_array[0]) {
+      new_arr = insert(new_arr, add_array[0], index + 1);
+      add_array.splice(0, 1);
+    }
+
+    index++;
+  }
+
+  console.log(new_arr);
+  console.log(add_array);
 }
 // Generate random ID
 function generateID() {
   return Math.floor(Math.random() * 100000000);
+}
+function insert(arr, item, index) {
+  arr = arr.reduce(function (s, a, i) {
+    i == index ? s.push(item, a) : s.push(a);
+    return s;
+  }, []);
+  //console.log(arr);
+  return arr;
 }
 todoButton.addEventListener("click", addTodo);
 generateButton.addEventListener("click", removeElement);
