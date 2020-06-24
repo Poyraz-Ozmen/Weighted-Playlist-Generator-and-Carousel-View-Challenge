@@ -16,7 +16,7 @@ header {
 h1 {
   text-decoration: underline;
   position: absolute;
-  left: 5%;
+  left: 2%;
   top: 5%;
   font-size: 100px;
   color: #93fd85;
@@ -238,7 +238,7 @@ div[id="list"] {
 }
 .action-btn {
   display: flex;
-  background-color: rgb(2, 1, 1);
+  background-color: rgb(243, 239, 239);
   border: 0;
   color: #000f3b;
   font-size: 20px;
@@ -346,18 +346,21 @@ div[id="list"] {
   }
 }
 button[id="change-form"] {
-  font-size: xx-large;
-  position: absolute;
-  right: 600px;
-  top: 90px;
-  margin-right: 350px;
-  cursor: pointer;
+  font-size: x-large;
+  position: fixed;
+  /*right: 875px;*/
+  top: 70px;
+  /*margin-right: 350px;*/
+  /*cursor: pointer;*/
   transition: all 0.3 ease;
   color: #802280;
-  background: rgb(49, 126, 25);
+  background: linear-gradient(120deg, #e99862, #b7d828);
   height: 100px;
-  width: 300px;
+  width: 200px;
   opacity: 0;
+  margin-top: 20px;
+  left: 420px;
+  pointer-events: none;
 }
 
 button[id="change-form"]:hover {

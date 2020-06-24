@@ -51,46 +51,52 @@ function addTransaction(val1, val2, val3) {
 function addTodo(event) {
   event.preventDefault();
   // todo div
-  const todoDiv = document.createElement("div");
-  todoDiv.classList.add("todo");
-  // create list
-  const newTodo = document.createElement("li");
-  newTodo.innerText =
-    "Name: " +
-    todoInput.value +
-    "\t" +
-    " URL: " +
-    url.value +
-    "\t\t" +
-    " Weight:  " +
-    weight.value;
+  if (todoInput.value.trim() === "" || url.value.trim() === "") {
+    alert("Please add a name and url");
+  } else {
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo");
+    // create list
+    const newTodo = document.createElement("li");
+    newTodo.innerText =
+      "Name: " +
+      todoInput.value +
+      "\t" +
+      " URL: " +
+      url.value +
+      "\t\t" +
+      " Weight:  " +
+      weight.value;
 
-  newTodo.classList.add("todo-item");
-  todoDiv.appendChild(newTodo);
+    newTodo.classList.add("todo-item");
+    todoDiv.appendChild(newTodo);
 
-  // save locald todos
-  saveLocalTodos(todoInput.value);
-  addTransaction(todoInput.value, url.value, weight.value);
+    // save locald todos
 
-  //buttons
+    saveLocalTodos(todoInput.value);
+    addTransaction(todoInput.value, url.value, weight.value);
+
+    //buttons
+    /*
   const completedButton = document.createElement("button");
   //coompletedButton.innerText='asdasdas'; //this is okay but I want to add icon
   completedButton.innerHTML = '<i class="fas fa-check"></i>'; //this is okay but I want to add icon
   completedButton.classList.add("complete-btn");
   todoDiv.appendChild(completedButton);
+*/
+    const trashButton = document.createElement("button");
+    trashButton.innerHTML = '<i class="fas fa-trash"></i>'; //this is okay but I want to add icon
+    trashButton.classList.add("trash-btn");
+    todoDiv.appendChild(trashButton);
 
-  const trashButton = document.createElement("button");
-  trashButton.innerHTML = '<i class="fas fa-trash"></i>'; //this is okay but I want to add icon
-  trashButton.classList.add("trash-btn");
-  todoDiv.appendChild(trashButton);
+    //append to list
+    todoList.appendChild(todoDiv);
 
-  //append to list
-  todoList.appendChild(todoDiv);
-
-  todoInput.value = "";
-  url.value = "";
-  weight.value = 1;
-  result.innerText = "Weight  =  " + weight.value;
+    todoInput.value = "";
+    url.value = "";
+    weight.value = 1;
+    result.innerText = "Weight  =  " + weight.value;
+  }
 }
 function deleteCheck(e) {
   const item = e.target;
@@ -143,12 +149,13 @@ function getTodos() {
     todoDiv.appendChild(newTodo);
 
     //buttons
+    /*
     const completedButton = document.createElement("button");
     //coompletedButton.innerText='asdasdas'; //this is okay but I want to add icon
     completedButton.innerHTML = '<i class="fas fa-check"></i>'; //this is okay but I want to add icon
     completedButton.classList.add("complete-btn");
     todoDiv.appendChild(completedButton);
-
+   */
     const trashButton = document.createElement("button");
     trashButton.innerHTML = '<i class="fas fa-trash"></i>'; //this is okay but I want to add icon
     trashButton.classList.add("trash-btn");
@@ -199,24 +206,35 @@ function removeElement() {
       counter++;
     }
   }
-  console.log(add_array);
+  //console.log(add_array);
 
   let temp_arr = getMaxOccurrence(add_array);
   let most_occured_el = temp_arr[0];
   let idx = temp_arr[1];
 
-  var input = prompt("Please enter number  for input");
+  var input = prompt("Please enter a number for size of the list");
 
+  var a = parseInt(input);
+  while (isNaN(a)) {
+    alert("Your input is not a number please, give a number");
+    input = prompt("Please enter a number for size of the list");
+    a = parseInt(input);
+  }
+  console.log(add_array);
   counter = 1;
   new_arr = [];
   new_arr.push(add_array[idx]); // MUST push the element with highest occurence as first item in list.
   add_array.splice(idx, 1);
+
   let index = 0;
-  while (counter < input && index < add_array.length) {
+  while (counter < input && index <= add_array.length) {
     if (new_arr[counter - 1] !== add_array[index]) {
       new_arr.push(add_array[index]);
       add_array.splice(index, 1);
       counter++;
+      if (add_array.length == index) {
+        index = 0;
+      }
       //index++;
     } else {
       index++;
@@ -250,7 +268,7 @@ function removeElement() {
   if (input != new_arr.length) {
     //console.log("alert");
     alert(
-      "it is not possible to form this list with this input, page will berefreshed."
+      "It is not possible to form this list with this input, page will berefreshed."
     );
     window.localStorage.clear();
     location.reload(true);
@@ -258,7 +276,7 @@ function removeElement() {
   for (let index = 0; index < new_arr.length - 1; index++) {
     if (new_arr[index] === new_arr[index + 1]) {
       alert(
-        "it is not possible to form this list with this input, page will berefreshed."
+        " it is not possible to form this list with this input, page will berefreshed."
       );
       window.localStorage.clear();
       location.reload(true);
@@ -291,11 +309,31 @@ function removeElement() {
   for (let index = 0; index < new_arr.length; index++) {
     images.push(hashTable[new_arr[index]]);
   }
+  var hashFrequency = new Object();
+  new_arr.forEach(function (item) {
+    hashFrequency[item] = 0;
+  });
+  let freq = 0;
+  new_arr.forEach(function (item) {
+    hashFrequency[item]++;
+    freq++;
+  });
+
+  var set = new Set(new_arr);
+  //console.log(set);
+
+  set.forEach(function (item) {
+    hashFrequency[item] = hashFrequency[item] / freq;
+  });
+  console.log("hashFrequencyTable: ", hashFrequency);
   //console.log("images: ", images);
   //console.log(hashTable);
-  //console.log(new_arr);
-  //console.log(add_array);
+  console.log(new_arr);
+  console.log(add_array);
+  // make carousel view button visible and clickable
   document.getElementById("change-form").style.opacity = "1";
+  document.getElementById("change-form").style.cursor = "pointer";
+  document.getElementById("change-form").style.pointerEvents = "initial";
 }
 // Generate random ID
 function generateID() {
