@@ -60,6 +60,42 @@
     <button type="submit" class="generate-button">
       <i class="fas fa-plus-square">Generate List</i>
     </button>
+
+    <!-- -->
+    <button id="change-form" onclick="openNav()">Change Form</button>
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+
+      <!-- Overlay content -->
+      <div class="overlay-content">
+        <div class="modal-container" id="modal">
+          <div class="modal">
+            <div class="temp" id="temp">
+              <div class="img-container">
+                <img src="" alt="image-cover" id="cover" />
+              </div>
+
+              <div class="navigation">
+                <button id="prev" class="action-btn">
+                  <i class="fas fa-backward"></i>
+                </button>
+                <button id="dot-1" class="dot"></button>
+                <button id="dot-2" class="dot"></button>
+                <button id="dot-3" class="dot"></button>
+                <button id="next" class="action-btn">
+                  <i class="fas fa-forward"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       type="text/javascript"
       src="script.js"

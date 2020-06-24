@@ -198,3 +198,164 @@ div[id="list"] {
   margin-left: 100px;
   margin-top: 150px;
 }
+/************************************************/
+/*
+.img-container {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
+  top: 50%;
+  right: 70%;
+}
+*/
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  margin-bottom: 10px 0;
+}
+.dot {
+  border: none;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border-radius: 50%;
+  outline: none;
+}
+.dot:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+.dot.active {
+  background: rgba(0, 0, 0, 0.5);
+}
+.action-btn {
+  display: flex;
+  background-color: rgb(2, 1, 1);
+  border: 0;
+  color: #000f3b;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.action-btn:focus {
+  outline: 0;
+}
+
+/*
+.toggle {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgba(240, 6, 6, 0.1);
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+*/
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(228, 214, 214); /* Black fallback color */
+  background-color: rgba(161, 119, 119, 1); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  color: rgba(247, 247, 247, 1);
+  position: absolute;
+
+  top: 30%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-bottom: 50px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #faf4f4;
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover,
+.overlay a:focus {
+  color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: 20px;
+  }
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+.close-btn {
+  background: transparent;
+  font-size: 25px;
+  position: absolute;
+  top: 0;
+  right: 15%;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+button[id="change-form"] {
+  font-size: xx-large;
+  position: absolute;
+  right: 1400px;
+  top: 90px;
+  margin-right: 350px;
+  cursor: pointer;
+  transition: all 0.3 ease;
+  color: #802280;
+  background: rgb(49, 126, 25);
+  height: 100px;
+  width: 300px;
+  opacity: 0;
+}
+
+button[id="change-form"]:hover {
+  background: orange;
+  color: white;
+}

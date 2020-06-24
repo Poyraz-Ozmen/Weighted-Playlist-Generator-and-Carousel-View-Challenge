@@ -6,7 +6,7 @@ const form = document.getElementById("form");
 const url = document.getElementById("url");
 const list = document.getElementById("list");
 const transactionList = document.querySelector(".transaction-list");
-
+const images = [];
 // slider for weight range
 var result = document.getElementById("result");
 var weight = document.getElementById("mine");
@@ -282,9 +282,21 @@ function removeElement() {
     //append to list
     transactionList.appendChild(transactionDiv);
   });
+  var hashTable = new Object();
+  //  create playlist
+  transactions.forEach(function (transaction) {
+    console.log(transaction);
+    hashTable[transaction.todoInput] = transaction.url;
+  });
 
+  for (let index = 0; index < new_arr.length; index++) {
+    images.push(hashTable[new_arr[index]]);
+  }
+  console.log("images: ", images);
+  console.log(hashTable);
   console.log(new_arr);
   console.log(add_array);
+  document.getElementById("change-form").style.opacity = "1";
 }
 // Generate random ID
 function generateID() {
@@ -323,7 +335,109 @@ function getMaxOccurrence(arr) {
 
   return [maxValue, idx];
 }
+
+/* Open when someone clicks on the span element */
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
 todoButton.addEventListener("click", addTodo);
 generateButton.addEventListener("click", removeElement);
 todoList.addEventListener("click", deleteCheck);
 document.addEventListener("DomContentLoaded", getTodos);
+
+////
+const close = document.getElementById("close");
+//const open = document.getElementById("open");
+const modal = document.getElementById("modal");
+///
+
+const container = document.getElementById("container");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const dots = document.querySelectorAll(".dot");
+//console.log(dots);
+//const toggle = document.getElementById("toggle");
+
+const title = document.getElementById("title");
+const cover = document.getElementById("cover");
+
+/*
+const images = [
+  "https://cdn.pixabay.com/photo/2020/06/15/19/49/fuchs-5303221_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2020/06/20/12/32/tit-5320871__340.jpg",
+  "https://cdn.pixabay.com/photo/2020/06/06/14/26/sunflower-5266745_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2020/06/14/09/27/seagull-5297122_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2015/12/01/19/35/portrait-1072696_960_720.jpg",
+];
+*/
+
+// Show modal
+//open.addEventListener("click", () => modal.classList.add("show-modal"));
+
+// Hide modal
+//close.addEventListener("click", () => modal.classList.remove("show-modal"));
+
+// Hide modal on outside click
+window.addEventListener("click", (e) =>
+  e.target == modal ? modal.classList.remove("show-modal") : false
+);
+
+const changeForm = document.getElementById("change-form");
+changeForm.addEventListener("click", loadImages);
+
+function loadImages() {
+  let activeDotNum = 0;
+  let clickedDotNum = 0;
+  // Keep track of image
+
+  let imageIndex = 0;
+  // Initially load image details into DOM
+  loadImg(images[0]);
+
+  // Update image details
+  function loadImg(image) {
+    //cover.src = `images/${image}.jpg`;
+    cover.src = `${image}`;
+  }
+
+  // Previous image
+  function previmage() {
+    imageIndex--;
+    if (imageIndex < 0) {
+      imageIndex = images.length - 1;
+    }
+    if (activeDotNum === 0) {
+      activeDotNum = 2;
+    } else {
+      activeDotNum--;
+    }
+    loadImg(images[imageIndex]);
+    console.log("image_index: ", imageIndex);
+    console.log("activeDotNum: ", activeDotNum);
+  }
+
+  // Next image
+  function nextimage() {
+    imageIndex++;
+
+    if (imageIndex > images.length - 1) {
+      imageIndex = 0;
+    }
+    if (activeDotNum === 2) {
+      activeDotNum = 0;
+    } else {
+      activeDotNum++;
+    }
+    loadImg(images[imageIndex]);
+    console.log("image_index: ", imageIndex);
+    console.log("active: ", activeDotNum);
+  }
+
+  prevBtn.addEventListener("click", previmage);
+  nextBtn.addEventListener("click", nextimage);
+}
