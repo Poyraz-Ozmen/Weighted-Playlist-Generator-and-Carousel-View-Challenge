@@ -10,6 +10,7 @@ const transactionList = document.querySelector(".transaction-list");
 // slider for weight range
 var result = document.getElementById("result");
 var weight = document.getElementById("mine");
+
 function change() {
   result.innerText = "Weight  =  " + weight.value;
 }
@@ -190,23 +191,6 @@ function removeElement() {
   form.remove();
   generateButton.remove();
 
-  //  create playlist
-  transactions.forEach(function (transaction) {
-    // todo div
-    const transactionDiv = document.createElement("div");
-    transactionDiv.classList.add("transaction");
-    // create list
-    const newTransaction = document.createElement("li");
-    newTransaction.innerText = `${transaction.todoInput} `;
-    console.log(transaction);
-    newTransaction.classList.add("transaction-item");
-    console.log(newTransaction);
-    transactionDiv.appendChild(newTransaction);
-
-    //append to list
-    transactionList.appendChild(transactionDiv);
-  });
-
   add_array = [];
   for (let index = 0; index < transactions.length; index++) {
     var counter = 0;
@@ -216,12 +200,17 @@ function removeElement() {
     }
   }
   console.log(add_array);
-  input = 13;
+
+  let temp_arr = getMaxOccurrence(add_array);
+  let most_occured_el = temp_arr[0];
+  let idx = temp_arr[1];
+
+  input = 3;
   counter = 1;
   new_arr = [];
-  new_arr.push(add_array[0]);
-  let index = 1;
-  var len_of_ad_array = add_array.length;
+  new_arr.push(add_array[idx]); // MUST push the element with highest occurence as first item in list.
+  add_array.splice(idx, 1);
+  let index = 0;
   while (counter < input && index < add_array.length) {
     if (new_arr[counter - 1] !== add_array[index]) {
       new_arr.push(add_array[index]);
@@ -242,15 +231,51 @@ function removeElement() {
   console.log(new_arr);
   console.log(add_array);
   index = 0;
+  //if it is equal to input dont do any arrangements
+  if (new_arr.length != input) {
+    while (add_array.length > 0 && index < new_arr.length) {
+      if (
+        new_arr[index] != add_array[0] &&
+        new_arr[index + 1] != add_array[0]
+      ) {
+        new_arr = insert(new_arr, add_array[0], index + 1);
+        add_array.splice(0, 1);
+      }
 
-  while (add_array.length > 0 && index < new_arr.length) {
-    if (new_arr[index] != add_array[0] && new_arr[index + 1] != add_array[0]) {
-      new_arr = insert(new_arr, add_array[0], index + 1);
-      add_array.splice(0, 1);
+      index++;
     }
-
-    index++;
   }
+
+  if (input != new_arr.length) {
+    console.log("alert");
+    alert("it is not possible to form this list, page will berefreshed.");
+    window.localStorage.clear();
+    location.reload(true);
+  }
+  for (let index = 0; index < new_arr.length - 1; index++) {
+    if (new_arr[index] === new_arr[index + 1]) {
+      alert("it is not possible to form this list, page will berefreshed.");
+      window.localStorage.clear();
+      location.reload(true);
+    }
+  }
+
+  //  create playlist
+  new_arr.forEach(function (transaction) {
+    // todo div
+    const transactionDiv = document.createElement("div");
+    transactionDiv.classList.add("transaction");
+    // create list
+    const newTransaction = document.createElement("li");
+    newTransaction.innerText = `${transaction}`;
+    console.log(transaction);
+    newTransaction.classList.add("transaction-item");
+    console.log(newTransaction);
+    transactionDiv.appendChild(newTransaction);
+
+    //append to list
+    transactionList.appendChild(transactionDiv);
+  });
 
   console.log(new_arr);
   console.log(add_array);
@@ -259,6 +284,7 @@ function removeElement() {
 function generateID() {
   return Math.floor(Math.random() * 100000000);
 }
+
 function insert(arr, item, index) {
   arr = arr.reduce(function (s, a, i) {
     i == index ? s.push(item, a) : s.push(a);
@@ -266,6 +292,30 @@ function insert(arr, item, index) {
   }, []);
   //console.log(arr);
   return arr;
+}
+
+function getMaxOccurrence(arr) {
+  var o = {},
+    maxCount = 0,
+    maxValue,
+    m;
+  var idx = 0;
+  for (var i = 0, iLen = arr.length; i < iLen; i++) {
+    m = arr[i];
+
+    if (!o.hasOwnProperty(m)) {
+      o[m] = 0;
+    }
+    ++o[m];
+
+    if (o[m] > maxCount) {
+      maxCount = o[m];
+      maxValue = m;
+      idx = i;
+    }
+  }
+
+  return [maxValue, idx];
 }
 todoButton.addEventListener("click", addTodo);
 generateButton.addEventListener("click", removeElement);

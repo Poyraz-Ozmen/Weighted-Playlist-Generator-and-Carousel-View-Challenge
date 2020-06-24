@@ -125,6 +125,10 @@ form button:hover {
   border: none;
   cursor: pointer;
 }
+.generate-button:hover {
+  background: orange;
+  color: white;
+}
 .slider {
   position: absolute;
   -webkit-appearance: none;
@@ -147,30 +151,49 @@ input[type="text"] {
   border-radius: 4px;
   padding: 1rem, 2rem;
   margin-right: 5px;
+  top: 10%;
 }
 input[id="mine"] {
   box-sizing: border-box;
   position: absolute;
   top: 14%;
-  width: 520px;
+  width: 500px;
   right: 42%;
   border: 15px solid rgb(0, 0, 0);
   margin-bottom: 100px;
+}
+input[id="url"] {
+  box-sizing: border-box;
+  position: absolute;
+  top: 8%;
+  width: 450px;
+  right: 35%;
+  border: 2px solid rgb(3, 3, 3);
+}
+input[id="name"] {
+  box-sizing: border-box;
+  position: absolute;
+  top: 8%;
+  width: 450px;
+  right: 55%;
+  border: 2px solid rgb(3, 3, 3);
 }
 span[id="result"] {
   box-sizing: border-box;
   color: rgb(12, 12, 12);
   margin-right: 100px;
   margin-left: 1px;
+
   position: absolute;
   right: 30%;
-  font-size: 20px;
+  font-size: 30px;
   top: 15%;
   display: block;
   border: 3px solid rgb(21, 216, 64);
 }
 div[id="list"] {
-  display: flex;
+  top: 20px;
+  /*display: flex;*/
   font-size: xx-large;
   margin-left: 100px;
   margin-top: 150px;
