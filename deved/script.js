@@ -205,7 +205,9 @@ function removeElement() {
   let most_occured_el = temp_arr[0];
   let idx = temp_arr[1];
 
-  input = 3;
+  //input = 3;
+  var input = prompt("Please enter number  for input");
+
   counter = 1;
   new_arr = [];
   new_arr.push(add_array[idx]); // MUST push the element with highest occurence as first item in list.
@@ -248,13 +250,17 @@ function removeElement() {
 
   if (input != new_arr.length) {
     console.log("alert");
-    alert("it is not possible to form this list, page will berefreshed.");
+    alert(
+      "it is not possible to form this list with this input, page will berefreshed."
+    );
     window.localStorage.clear();
     location.reload(true);
   }
   for (let index = 0; index < new_arr.length - 1; index++) {
     if (new_arr[index] === new_arr[index + 1]) {
-      alert("it is not possible to form this list, page will berefreshed.");
+      alert(
+        "it is not possible to form this list with this input, page will berefreshed."
+      );
       window.localStorage.clear();
       location.reload(true);
     }
