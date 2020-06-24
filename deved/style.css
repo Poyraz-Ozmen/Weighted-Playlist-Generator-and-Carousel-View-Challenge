@@ -83,6 +83,7 @@ form button:hover {
 }
 .todo-item {
   padding: 0rem 0.5rem;
+  font-size: large;
 }
 .fa-trash,
 .fa-check {
@@ -107,13 +108,15 @@ form button:hover {
   color: black;
   position: absolute;
   right: 20%;
+  height: 80px;
+  top: 8%;
 }
 .generate-button {
   color: rgb(89, 0, 255);
   background-color: rgb(188, 208, 218);
   margin-left: 100px;
   position: absolute;
-  right: 5%;
+  right: 3%;
   top: 8%;
   box-sizing: border-box;
   height: 80px;

@@ -53,13 +53,13 @@ function addTodo(event) {
   // create list
   const newTodo = document.createElement("li");
   newTodo.innerText =
-    "name: " +
+    "Name: " +
     todoInput.value +
-    "    " +
-    "url: " +
+    "\t" +
+    " URL: " +
     url.value +
-    "    " +
-    " w:  " +
+    "\t\t" +
+    " Weight:  " +
     weight.value;
 
   newTodo.classList.add("todo-item");
@@ -164,9 +164,21 @@ function removeLocalTodos(todo) {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
   const todoIndex = todo.children[0].innerText;
+  console.log(todo.children[0]);
   console.log(todoIndex);
+  var n = todoIndex.indexOf("URL");
+  console.log(n);
+  var deleteItem = todoIndex.slice(6, n - 1);
+  console.log(todoIndex.slice(6, n - 1));
   todos.splice(todos.indexOf(todoIndex), 1);
   localStorage.setItem("todos", JSON.stringify(todos));
+  ////
+  for (let index = 0; index < transactions.length; index++) {
+    if (transactions[index].todoInput === deleteItem) {
+      transactions.splice(index, 1);
+      localStorage.setItem("transactions", JSON.stringify(transactions));
+    }
+  }
 }
 // Generate random ID
 function generateID() {
@@ -175,3 +187,6 @@ function generateID() {
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
 document.addEventListener("DomContentLoaded", getTodos);
+console.log("transactions: ", transactions);
+console.log("transactions[0]: ", transactions[0]);
+console.log("transactions[0][1]: ", transactions[0].todoInput);
