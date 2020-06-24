@@ -420,6 +420,21 @@ window.addEventListener("click", (e) =>
 const changeForm = document.getElementById("change-form");
 changeForm.addEventListener("click", loadImages);
 
+function checkImageExists(imageUrl, callBack) {
+  var imageData = new Image();
+  imageData.onload = function () {
+    callBack(true);
+  };
+  imageData.onerror = function () {
+    callBack(false);
+  };
+  imageData.src = imageUrl;
+}
+
+// image url that want to check
+
+//Here pass image url like imageFile in function to check image exist or not.
+
 function loadImages() {
   let activeDotNum = 0;
   let clickedDotNum = 0;
@@ -431,8 +446,16 @@ function loadImages() {
 
   // Update image details
   function loadImg(image) {
-    //cover.src = `images/${image}.jpg`;
-    cover.src = `${image}`;
+    //check if image exists
+    checkImageExists(image, function (existsImage) {
+      if (existsImage == true) {
+        cover.src = `${image}`;
+      } else {
+        alert(`Image does not exist for given url:  ${image}`);
+        window.localStorage.clear();
+        location.reload(true);
+      }
+    });
   }
 
   // Previous image
