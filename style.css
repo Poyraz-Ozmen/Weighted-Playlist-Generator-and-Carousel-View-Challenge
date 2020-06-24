@@ -1,42 +1,218 @@
-@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
-
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background-image: linear-gradient(
-    0deg,
-    rgba(247, 247, 247, 1) 23.8%,
-    rgba(252, 221, 221, 1) 92%
-  );
-  height: 100vh;
+  background-image: linear-gradient(120deg, #68c793, #738dd4);
+  color: rgb(43, 40, 40);
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+}
+header {
+  font-size: 1.5rem;
+}
+h1 {
+  text-decoration: underline;
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  font-size: 100px;
+  color: #93fd85;
+}
+header,
+form {
+  min-height: 8vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 5px;
   justify-content: center;
-  font-family: "Lato", sans-serif;
-  margin: 0;
+  align-items: center;
+}
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: none;
+  background: white;
+}
+form button {
+  color: #fda085;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+form button:hover {
+  background: orange;
+  color: white;
+}
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo-list {
+  min-width: 30%;
+  list-style: none;
+}
+.todo {
+  margin: 2rem;
+  background: white;
+  color: black;
+  font-size: 1.5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
 }
 
-h1 {
-  font-size: 50px;
-  width: 600px;
-  left: 50%;
-  right: 50%;
-  text-align: center;
-  margin-top: 1px;
-  margin-bottom: 50px;
+.todo li {
+  flex: 1;
 }
+.trash-btn,
+.complete-btn {
+  background: rgb(217, 255, 0);
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.complete-btn {
+  background: green;
+}
+.todo-item {
+  padding: 0rem 0.5rem;
+  font-size: large;
+}
+.fa-trash,
+.fa-check {
+  pointer-events: none;
+  padding: 1;
+}
+.fa-trash {
+  color: red;
+}
+/*maybe i dont need this*/
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.fall {
+  transform: translateY(8rem) rotateZ(20deg);
+  opacity: 0;
+}
+.todo-button {
+  margin-left: 5px;
+  background-color: rgb(52, 218, 102);
+  color: black;
+  position: absolute;
+  right: 20%;
+  height: 80px;
+  top: 8%;
+}
+.generate-button {
+  color: rgb(89, 0, 255);
+  background-color: rgb(188, 208, 218);
+  margin-left: 100px;
+  position: absolute;
+  right: 3%;
+  top: 8%;
+  box-sizing: border-box;
+  height: 80px;
+  width: 300px;
+  font-size: xx-large;
+  border: none;
+  cursor: pointer;
+}
+.generate-button:hover {
+  background: orange;
+  color: white;
+}
+.slider {
+  position: absolute;
+  -webkit-appearance: none;
+  width: 100%;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  box-sizing: border-box;
+}
+.result {
+  font-size: 1000px;
+  margin-right: 100px;
+}
+input[type="text"] {
+  box-sizing: border-box;
+  border: 2px solid rgb(3, 3, 3);
+  border-radius: 4px;
+  padding: 1rem, 2rem;
+  margin-right: 5px;
+  top: 10%;
+}
+input[id="mine"] {
+  box-sizing: border-box;
+  position: absolute;
+  top: 14%;
+  width: 500px;
+  right: 42%;
+  border: 15px solid rgb(0, 0, 0);
+  margin-bottom: 100px;
+}
+input[id="url"] {
+  box-sizing: border-box;
+  position: absolute;
+  top: 8%;
+  width: 450px;
+  right: 35%;
+  border: 2px solid rgb(3, 3, 3);
+}
+input[id="name"] {
+  box-sizing: border-box;
+  position: absolute;
+  top: 8%;
+  width: 450px;
+  right: 55%;
+  border: 2px solid rgb(3, 3, 3);
+}
+span[id="result"] {
+  box-sizing: border-box;
+  color: rgb(12, 12, 12);
+  margin-right: 100px;
+  margin-left: 1px;
+
+  position: absolute;
+  right: 30%;
+  font-size: 30px;
+  top: 15%;
+  display: block;
+  border: 3px solid rgb(21, 216, 64);
+}
+div[id="list"] {
+  top: 20px;
+  /*display: flex;*/
+  font-size: xx-large;
+  margin-left: 100px;
+  margin-top: 150px;
+}
+/************************************************/
 /*
 .img-container {
-  position: relative;
-  width: 1000px;
-  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+  
+  top: 50%;
+  right: 70%;
 }
 */
 .navigation {
@@ -62,7 +238,7 @@ h1 {
 }
 .action-btn {
   display: flex;
-  background-color: #fff;
+  background-color: rgb(2, 1, 1);
   border: 0;
   color: #000f3b;
   font-size: 20px;
@@ -93,24 +269,21 @@ h1 {
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
-  background-color: rgb(0, 0, 0); /* Black fallback color */
-  background-color: rgba(0, 0, 0, 0.9); /* Black w/opacity */
+  background-color: rgb(228, 214, 214); /* Black fallback color */
+  background-color: rgba(161, 119, 119, 1); /* Black w/opacity */
   overflow-x: hidden; /* Disable horizontal scroll */
   transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
-.overlay.form {
-  margin-bottom: 5px;
-  border-bottom: chartreuse;
-}
+
 /* Position the content inside the overlay */
 .overlay-content {
   color: rgba(247, 247, 247, 1);
-  position: relative;
+  position: absolute;
 
-  /*top: 25%; /* 25% from the top */
+  top: 30%; /* 25% from the top */
   width: 100%; /* 100% width */
   text-align: center; /* Centered text/links */
-  margin-top: 50px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  margin-bottom: 50px; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
 
 /* The navigation links inside the overlay */
@@ -118,7 +291,7 @@ h1 {
   padding: 8px;
   text-decoration: none;
   font-size: 36px;
-  color: #818181;
+  color: #faf4f4;
   display: block; /* Display block instead of inline */
   transition: 0.3s; /* Transition effects on hover (color) */
 }
@@ -148,78 +321,11 @@ h1 {
     top: 15px;
     right: 35px;
   }
-}
-.slider {
-  margin-bottom: 5px;
-  -webkit-appearance: none;
-  width: 10%;
-  height: 15px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-}
-/**/
-.modal-container {
-  background-color: rgba(12, 12, 12, 0.6);
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.modal-container.show-modal {
-  /*bunu ödevde kullanabilirim.*/
-  display: block;
-}
-
-.modal {
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(12, 12, 12, 0.3);
-  position: absolute;
-  overflow: hidden;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /*ortaya koyuyuor*/
-  max-width: 100%;
-  width: 400px;
-  animation-name: modalopen;
-  animation-duration: var(--modal-duration);
-}
-
-.modal-header {
-  background: var(--primary-color);
-  color: rgb(0, 0, 0);
-  padding: 15px;
-}
-
-.modal-header h3 {
-  margin: 0;
-  border-bottom: 1px solid #333;
-}
-
-.modal-content {
-  padding: 20px;
-  color: #000f3b;
-}
-
-.modal-form div {
-  margin: 15px 0;
-}
-
-.modal-form label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.modal-form .form-input {
-  padding: 8px;
-  width: 100%;
+  button[id="change-form"] {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
 }
 
 .close-btn {
@@ -227,7 +333,7 @@ h1 {
   font-size: 25px;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 15%;
 }
 
 @keyframes modalopen {
@@ -238,4 +344,23 @@ h1 {
   to {
     opacity: 1;
   }
+}
+button[id="change-form"] {
+  font-size: xx-large;
+  position: absolute;
+  right: 600px;
+  top: 90px;
+  margin-right: 350px;
+  cursor: pointer;
+  transition: all 0.3 ease;
+  color: #802280;
+  background: rgb(49, 126, 25);
+  height: 100px;
+  width: 300px;
+  opacity: 0;
+}
+
+button[id="change-form"]:hover {
+  background: orange;
+  color: white;
 }
