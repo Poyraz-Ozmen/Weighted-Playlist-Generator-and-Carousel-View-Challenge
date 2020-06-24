@@ -1,10 +1,11 @@
 const todoInput = document.querySelector(".todo-input");
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
-
-//const form = document.getElementById("form");
-//const text = document.getElementById("text");
+const generateButton = document.querySelector(".generate-button");
+const form = document.getElementById("form");
 const url = document.getElementById("url");
+const list = document.getElementById("list");
+const transactionList = document.querySelector(".transaction-list");
 
 // slider for weight range
 var result = document.getElementById("result");
@@ -33,7 +34,8 @@ function addTransaction(val1, val2, val3) {
     alert("Please add a name and url");
   } else {
     const transaction = {
-      id: generateID(),
+      //do not need id
+      //id: generateID(),
       todoInput: val1,
       url: val2,
       weight: val3,
@@ -167,12 +169,11 @@ function removeLocalTodos(todo) {
   console.log(todo.children[0]);
   console.log(todoIndex);
   var n = todoIndex.indexOf("URL");
-  console.log(n);
   var deleteItem = todoIndex.slice(6, n - 1);
-  console.log(todoIndex.slice(6, n - 1));
   todos.splice(todos.indexOf(todoIndex), 1);
   localStorage.setItem("todos", JSON.stringify(todos));
-  ////
+
+  //delete  item from list,there could be multiple item with same name
   for (let index = 0; index < transactions.length; index++) {
     if (transactions[index].todoInput === deleteItem) {
       transactions.splice(index, 1);
@@ -180,13 +181,37 @@ function removeLocalTodos(todo) {
     }
   }
 }
+
+function removeElement() {
+  // Removes an element from the document
+  console.log("entered");
+  var element = document.getElementById("todo-container");
+  element.remove();
+  form.remove();
+  generateButton.remove();
+
+  //  create playlist
+  transactions.forEach(function (transaction) {
+    // todo div
+    const transactionDiv = document.createElement("div");
+    transactionDiv.classList.add("transaction");
+    // create list
+    const newTransaction = document.createElement("li");
+    newTransaction.innerText = `${transaction.todoInput}`;
+    console.log(transaction);
+    newTransaction.classList.add("transaction-item");
+    console.log(newTransaction);
+    transactionDiv.appendChild(newTransaction);
+
+    //append to list
+    transactionList.appendChild(transactionDiv);
+  });
+}
 // Generate random ID
 function generateID() {
   return Math.floor(Math.random() * 100000000);
 }
 todoButton.addEventListener("click", addTodo);
+generateButton.addEventListener("click", removeElement);
 todoList.addEventListener("click", deleteCheck);
 document.addEventListener("DomContentLoaded", getTodos);
-console.log("transactions: ", transactions);
-console.log("transactions[0]: ", transactions[0]);
-console.log("transactions[0][1]: ", transactions[0].todoInput);

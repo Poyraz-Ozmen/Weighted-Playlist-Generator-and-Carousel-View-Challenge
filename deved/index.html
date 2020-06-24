@@ -18,7 +18,12 @@
     <header>
       <h1>Playlist</h1>
     </header>
-    <form>
+    <!--when list created we will apend item to here-->
+    <div class="list" id="list">
+      <ul class="transaction-list"></ul>
+    </div>
+    <!--      dont forget to style this in css                    -->
+    <form id="form" class="form">
       <input type="text" class="todo-input" placeholder="name..." />
       <br />
       <input type="text" id="url" name="url" placeholder="url..." />
@@ -40,12 +45,9 @@
       <button class="todo-button" type="submit">
         <i class="fas fa-plus-square">Add Item</i>
       </button>
-      <button type="submit" class="generate-button">
-        <i class="fas fa-plus-square">Generate List</i>
-      </button>
     </form>
 
-    <div class="todo-container">
+    <div class="todo-container" id="todo-container">
       <ul class="todo-list"></ul>
       <!--
         we will attach div here by javascript
@@ -55,7 +57,9 @@
         <button></button>
       </div> -->
     </div>
-
+    <button type="submit" class="generate-button">
+      <i class="fas fa-plus-square">Generate List</i>
+    </button>
     <script
       type="text/javascript"
       src="script.js"
